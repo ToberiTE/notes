@@ -1,0 +1,130 @@
+:root {
+  --text-primary: #0b0b0b;
+  --bg-primary: #fffaf0;
+  --bg-secondary: #e6eedf;
+  --completed: #95ff9e;
+  --boxshadow: rgba(11, 11, 11, 0.2);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.5;
+  letter-spacing: 1px;
+  font-weight: 300;
+  user-select: none;
+}
+
+body {
+  display: grid;
+  grid-template-rows: min-content auto;
+  height: 100svh;
+}
+
+header {
+  background-color: var(--bg-secondary);
+  padding-left: 3rem;
+  height: 5rem;
+  box-shadow: 0 0 20px var(--boxshadow);
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 100;
+}
+
+main {
+  display: grid;
+  background: url("notes.svg") center / 95% 95% no-repeat;
+  overflow-y: hidden;
+}
+
+section {
+  background-color: rgba(255 250 240 / 0.97);
+}
+
+ul {
+  list-style: none;
+  overflow-y: scroll;
+  height: calc(100svh - 9rem);
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1rem;
+    text-wrap: pretty;
+    box-shadow: 0 0 1px var(--boxshadow);
+
+    button span {
+      font-size: 2rem;
+    }
+  }
+}
+
+.p-completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.li-completed {
+  background-color: var(--completed);
+}
+
+.container {
+  box-shadow: 0 0 20px var(--boxshadow);
+  height: calc(100svh - 5rem);
+
+  .container-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0.25rem;
+    background-color: rgba(230 238 223 / 0.6);
+  }
+}
+
+input,
+button {
+  background: 0;
+  border: 0;
+  outline: 0;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  padding: 1.5rem;
+}
+
+input {
+  padding-left: 1rem;
+  font-weight: 300;
+  font-size: 16px;
+  width: 100%;
+
+  &::placeholder {
+    font-style: italic;
+  }
+}
+
+span {
+  font-size: 2.5rem;
+  font-weight: 200;
+}
