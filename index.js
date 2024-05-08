@@ -33,7 +33,7 @@ function addNote(text, isCompleted = false) {
 
 function completeNote(e) {
   if (e.target.tagName !== "BUTTON" && e.target.tagName !== "SPAN") {
-    const li = e.target.closest("li");
+    const li = this.closest("li");
     const textSpan = this.querySelector("p");
     li.classList.toggle("li-completed");
     textSpan.classList.toggle("p-completed");
@@ -52,7 +52,9 @@ function saveNotes() {
   const notes = [];
   document.querySelectorAll("#notes-list li").forEach((note) => {
     const text = note.querySelector("p").textContent;
-    const isCompleted = note.querySelector("p").classList.contains("completed");
+    const isCompleted =
+      note.querySelector("p").classList.contains("p-completed") &&
+      note.closest("li").classList.contains("li-completed");
     notes.push({ text, isCompleted });
   });
   localStorage.setItem("notes", JSON.stringify(notes));
