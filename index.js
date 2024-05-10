@@ -5,11 +5,9 @@ const noteInput = document.getElementById("note-input");
 
 noteInput.addEventListener("keydown", function (e) {
   const inputValue = noteInput.value.trim();
-  if (e.key === "Enter") {
-    if (inputValue !== "") {
-      addNote(inputValue);
-      saveNotes();
-    }
+  if (e.key === "Enter" && inputValue !== "") {
+    addNote(inputValue);
+    saveNotes();
   }
 });
 
