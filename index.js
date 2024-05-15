@@ -1,9 +1,39 @@
-document.addEventListener("DOMContentLoaded", getNotes);
+document.addEventListener("DOMContentLoaded", function () {
+  getNotes();
 
-const notesList = document.getElementById("notes-list");
+  new Sortable(notesList, {
+    animation: 150,
+    ghostClass: "sortable-ghost",
+    delay: 200,
+    delayOnTouchOnly: true,
+    onEnd: function () {
+      saveNotes();
+    },
+  });
+});
+
 const noteInput = document.getElementById("note-input");
+const clearListBtn = document.getElementById("clear-list");
+const notesList = document.getElementById("notes-list");
+const dialog = document.querySelector("dialog");
+const confirmClearBtn = document.getElementById("confirm-clear-list");
+const cancelClearBtn = document.getElementById("cancel-clear-list");
 
 noteInput.addEventListener("keydown", handleNoteInput);
+
+clearListBtn.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+cancelClearBtn.addEventListener("click", () => {
+  dialog.close();
+});
+
+confirmClearBtn.addEventListener("click", () => {
+  clearNotesList();
+  saveNotes();
+  dialog.close();
+});
 
 function handleNoteInput(e) {
   if (e.key === "Enter") {
@@ -30,6 +60,7 @@ function addNote(text, isCompleted = false) {
 
   li.addEventListener("click", () => markAsCompleted(li, textSpan));
   appendDeleteButton(li);
+  updateClearButtonVisibility();
 }
 
 function appendDeleteButton(li) {
@@ -60,11 +91,13 @@ function saveNotes() {
     return a.isCompleted === b.isCompleted ? 0 : a.isCompleted ? 1 : -1;
   });
   localStorage.setItem("notes", JSON.stringify(notes));
+  updateClearButtonVisibility();
 }
 
 function getNotes() {
   const notes = JSON.parse(localStorage.getItem("notes")) ?? [];
   notes.forEach((note) => addNote(note.text, note.isCompleted));
+  updateClearButtonVisibility();
 }
 
 function clearNotesList() {
@@ -74,4 +107,12 @@ function clearNotesList() {
 function refreshNotes() {
   clearNotesList();
   getNotes();
+}
+
+function updateClearButtonVisibility() {
+  if (!notesList.children.length) {
+    clearListBtn.style.display = "none";
+  } else {
+    clearListBtn.style.display = "initial";
+  }
 }

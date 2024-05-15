@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name=" description" content="Notes app" />
-    <title>Notes</title>
+    <meta name=" description" content="Noteringar app" />
+    <title>Noteringar</title>
     <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
@@ -18,20 +18,29 @@
 
 <body>
     <header>
-        <h1>Notes</h1>
+        <h1>Noteringar</h1>
     </header>
     <main>
         <section>
             <div class="container">
                 <div class="container-inner">
-                    <input id="note-input" placeholder="New note..." type="text">
+                    <input id="note-input" placeholder="Ny notering..." type="text">
+                    <button id="clear-list"><span>&#10226;</span></button>
                 </div>
                 <ul id="notes-list">
                 </ul>
             </div>
         </section>
     </main>
+    <dialog>
+        <p>Rensa listan?</p>
+        <div>
+            <button id="confirm-clear-list">Ja</button>
+            <button id="cancel-clear-list">Nej</button>
+        </div>
+    </dialog>
     <script defer src="index.js"></script>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
 </html>

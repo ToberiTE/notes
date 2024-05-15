@@ -24,13 +24,13 @@ html {
   letter-spacing: 1px;
   font-weight: 300;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 header {
   padding-left: 3rem;
   background-color: var(--bg-secondary);
   height: 5rem;
-  box-shadow: 0 0 20px var(--boxshadow);
   display: flex;
   align-items: center;
 }
@@ -53,6 +53,7 @@ ul {
   list-style: none;
   overflow-y: auto;
   height: calc(100svh - 9rem);
+  padding-bottom: 3rem;
 
   li {
     display: flex;
@@ -62,6 +63,11 @@ ul {
     text-wrap: pretty;
     box-shadow: 0 0 1px var(--boxshadow);
   }
+}
+
+.sortable-ghost {
+  opacity: 0.6;
+  background-color: #c8ebfb;
 }
 
 .p-completed {
@@ -102,6 +108,10 @@ button {
   padding-inline: 1rem 1.5rem;
 }
 
+#clear-list {
+  box-shadow: 0 0 20px var(--boxshadow);
+}
+
 input {
   padding-left: 1rem;
   font-weight: 300;
@@ -116,4 +126,39 @@ input {
 span {
   font-size: 2rem;
   font-weight: 100;
+}
+
+dialog[open] {
+  position: absolute;
+  background-color: var(--bg-primary);
+  display: grid;
+  place-content: center;
+  margin: auto;
+  border: 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 20px var(--boxshadow);
+  gap: 1.5rem;
+  padding: 1.5rem 2.5rem;
+
+  p {
+    font-size: 20px;
+  }
+
+  button {
+    background-color: var(--bg-primary);
+    margin-inline: 0.5rem;
+    font-size: inherit;
+    padding: 0.75rem 2rem;
+    box-shadow: 0 0 20px var(--boxshadow);
+    border-radius: 0.5rem;
+  }
+
+  #cancel-clear-list {
+    background-color: var(--text-primary);
+    color: white;
+  }
+}
+
+::backdrop {
+  background-color: var(--boxshadow);
 }
