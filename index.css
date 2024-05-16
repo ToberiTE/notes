@@ -67,7 +67,7 @@ ul {
 
 .sortable-ghost {
   opacity: 0.6;
-  background-color: #c8ebfb;
+  background-color: #def3fd;
 }
 
 .p-completed {
@@ -109,7 +109,7 @@ button {
 }
 
 #clear-list {
-  box-shadow: 0 0 20px var(--boxshadow);
+  background-color: var(--bg-primary);
 }
 
 input {
@@ -139,6 +139,7 @@ dialog[open] {
   box-shadow: 0 0 20px var(--boxshadow);
   gap: 1.5rem;
   padding: 1.5rem 2.5rem;
+  text-align: center;
 
   p {
     font-size: 20px;
@@ -148,7 +149,8 @@ dialog[open] {
     background-color: var(--bg-primary);
     margin-inline: 0.5rem;
     font-size: inherit;
-    padding: 0.75rem 2rem;
+    padding: 0.8rem 0;
+    min-width: 5rem;
     box-shadow: 0 0 20px var(--boxshadow);
     border-radius: 0.5rem;
   }
