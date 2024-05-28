@@ -10,8 +10,25 @@ document.addEventListener("DOMContentLoaded", function () {
       saveNotes();
     },
   });
-});
 
+  const darkMode = localStorage.getItem("isDarkMode");
+  let isDarkMode = false;
+  if (darkMode !== null) {
+    isDarkMode = darkMode === "true";
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }
+
+  if (isDarkMode) {
+    darkModeToggle.innerHTML = "<img src='moon.svg' alt=''>";
+  } else {
+    darkModeToggle.innerHTML = "<img src='sun.svg' alt=''>";
+  }
+});
+const darkModeToggle = document.getElementById("dark-mode-toggle");
 const noteInput = document.getElementById("note-input");
 const clearListBtn = document.getElementById("clear-list");
 const notesList = document.getElementById("notes-list");
@@ -20,6 +37,17 @@ const confirmClearBtn = document.getElementById("confirm-clear-list");
 const cancelClearBtn = document.getElementById("cancel-clear-list");
 
 noteInput.addEventListener("keydown", handleNoteInput);
+
+darkModeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+  if (document.body.classList.contains("dark-mode")) {
+    localStorage.setItem("isDarkMode", true);
+    darkModeToggle.innerHTML = "<img src='moon.svg' alt=''>";
+  } else {
+    localStorage.setItem("isDarkMode", false);
+    darkModeToggle.innerHTML = "<img src='sun.svg' alt=''>";
+  }
+});
 
 clearListBtn.addEventListener("click", () => {
   dialog.showModal();

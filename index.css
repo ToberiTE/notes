@@ -2,8 +2,20 @@
   --text-primary: #0b0b0b;
   --bg-primary: #fffaf0;
   --bg-secondary: #e6eedf;
+  --bg-section: rgba(255 250 240 / 0.97);
+  --container-inner: rgba(230 238 223 / 0.6);
+  --invert: invert(0);
   --completed: rgba(118, 255, 129, 0.5);
   --boxshadow: rgba(11, 11, 11, 0.2);
+}
+
+.dark-mode {
+  --text-primary: #f7f7f7;
+  --bg-primary: #020202;
+  --bg-secondary: #161615;
+  --bg-section: rgba(15, 15, 14, 0.97);
+  --container-inner: rgba(21, 22, 20, 0.6);
+  --invert: invert(1);
 }
 
 *,
@@ -46,7 +58,7 @@ main {
 }
 
 section {
-  background-color: rgba(255 250 240 / 0.97);
+  background-color: var(--bg-section);
 }
 
 ul {
@@ -85,7 +97,7 @@ ul {
 
   .container-inner {
     display: flex;
-    background-color: rgba(230 238 223 / 0.6);
+    background-color: var(--container-inner);
   }
 }
 
@@ -108,7 +120,8 @@ button {
   padding-inline: 1rem 1.5rem;
 }
 
-#clear-list {
+#clear-list,
+#dark-mode-toggle {
   background-color: var(--bg-primary);
 }
 
@@ -159,6 +172,11 @@ dialog[open] {
     background-color: var(--text-primary);
     color: white;
   }
+}
+
+img {
+  filter: var(--invert);
+  width: 1.5rem;
 }
 
 ::backdrop {
