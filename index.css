@@ -16,6 +16,7 @@
   --bg-section: rgba(15, 15, 14, 0.97);
   --container-inner: rgba(21, 22, 20, 0.6);
   --invert: invert(1);
+  --boxshadow: rgba(11, 11, 11, 0.8);
 }
 
 *,
@@ -24,6 +25,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+html {
+  background-color: var(--bg-primary);
 }
 
 body,
@@ -53,7 +58,6 @@ h1 {
 }
 
 main {
-  background: url("notes.svg") center / 95% 95% no-repeat;
   overflow-y: hidden;
 }
 
@@ -75,6 +79,15 @@ ul {
     text-wrap: pretty;
     box-shadow: 0 0 1px var(--boxshadow);
   }
+
+  .li-completed {
+    background-color: var(--completed);
+  }
+
+  .p-completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
 }
 
 .sortable-ghost {
@@ -82,22 +95,27 @@ ul {
   background-color: #def3fd;
 }
 
-.p-completed {
-  text-decoration: line-through;
-  opacity: 0.5;
-}
-
-.li-completed {
-  background-color: var(--completed);
-}
-
 .container {
   box-shadow: 0 0 20px var(--boxshadow);
   height: calc(100svh - 5rem);
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
 
   .container-inner {
     display: flex;
     background-color: var(--container-inner);
+  }
+
+  .background {
+    width: 95%;
+    height: 95%;
+    margin: auto;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.025;
+    filter: var(--invert);
   }
 }
 
@@ -120,9 +138,13 @@ button {
   padding-inline: 1rem 1.5rem;
 }
 
+#clear-list {
+  padding-bottom: 0.45rem;
+}
+
 #clear-list,
 #dark-mode-toggle {
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
 }
 
 input {
@@ -137,13 +159,13 @@ input {
 }
 
 span {
-  font-size: 2rem;
+  font-size: 32px;
   font-weight: 100;
 }
 
 dialog[open] {
   position: absolute;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
   display: grid;
   place-content: center;
   margin: auto;
@@ -152,6 +174,7 @@ dialog[open] {
   box-shadow: 0 0 20px var(--boxshadow);
   gap: 1.5rem;
   padding: 1.5rem 2.5rem;
+  color: var(--text-primary);
   text-align: center;
 
   p {
@@ -159,7 +182,6 @@ dialog[open] {
   }
 
   button {
-    background-color: var(--bg-primary);
     margin-inline: 0.5rem;
     font-size: inherit;
     padding: 0.8rem 0;
@@ -169,14 +191,14 @@ dialog[open] {
   }
 
   #cancel-clear-list {
-    background-color: var(--text-primary);
-    color: white;
+    background-color: var(--bg-primary);
+    color: inherit;
   }
 }
 
 img {
   filter: var(--invert);
-  width: 1.5rem;
+  width: 16px;
 }
 
 ::backdrop {

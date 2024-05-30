@@ -35,6 +35,7 @@ const notesList = document.getElementById("notes-list");
 const dialog = document.querySelector("dialog");
 const confirmClearBtn = document.getElementById("confirm-clear-list");
 const cancelClearBtn = document.getElementById("cancel-clear-list");
+const htmlColor = document.querySelector("meta[name=theme-color]");
 
 noteInput.addEventListener("keydown", handleNoteInput);
 
@@ -43,9 +44,11 @@ darkModeToggle.addEventListener("click", () => {
   if (document.body.classList.contains("dark-mode")) {
     localStorage.setItem("isDarkMode", true);
     darkModeToggle.innerHTML = "<img src='moon.svg' alt=''>";
+    htmlColor.setAttribute("content", "#020202");
   } else {
     localStorage.setItem("isDarkMode", false);
     darkModeToggle.innerHTML = "<img src='sun.svg' alt=''>";
+    htmlColor.setAttribute("content", "#fffaf0");
   }
 });
 
